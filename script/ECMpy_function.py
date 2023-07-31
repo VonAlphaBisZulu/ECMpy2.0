@@ -2057,8 +2057,16 @@ def calculate_yield(model, use_substrate, substrate_name,glc_concentration,colum
     Returns:
     * yield_list: pd.DataFrame - DataFrame with updated yield values.
     '''
-    model.reactions.get_by_id(use_substrate).bounds = (-glc_concentration, 0)
-    model.reactions.get_by_id(use_substrate+'_reverse').bounds = (0, 0)
+    try:
+        model.reactions.get_by_id(use_substrate).bounds = (-glc_concentration, 0)
+    except:
+        print(use_substrate + ' not in the model')
+    else:
+        try:
+            model.reactions.get_by_id(use_substrate+'_reverse').bounds = (0, 0)
+        except:
+            pass
+
     pfba_solution = cobra.flux_analysis.pfba(model)
     for column in range(len(columns)):
         yield_list.loc[glc_concentration, columns[column]] = pfba_solution.fluxes[correspond_rxn[column]]
@@ -2261,7 +2269,13 @@ def get_yield_cost_efficiency(enz_model, glc_concentration_list, use_substrate, 
     for glc_concentration in glc_concentration_list:
         with enz_model as growth_model:
             # Set the bounds and optimize the model
-            growth_model.reactions.get_by_id('%s_reverse' % use_substrate).bounds = (0.0, 0.0)
+            try:
+                growth_model.reactions.get_by_id('%s_reverse' % use_substrate).bounds = (0.0, 0.0)
+            except:
+                print(use_substrate + ' not in the model')
+            else:
+                pass
+
             growth_model.reactions.get_by_id('ATPM').bounds = (0.0, 1000)
             growth_model.reactions.get_by_id(use_substrate).bounds = (-glc_concentration, 0.0)
             pfba_solution = cobra.flux_analysis.pfba(growth_model)
@@ -2383,7 +2397,13 @@ def get_enz_foldchange(ecModel_file, obj, substrate, substrate_con, biomass_id, 
 
     with enz_model as tmp_model:
         tmp_model.reactions.get_by_id(substrate).bounds = (-substrate_con, 0)
-        tmp_model.reactions.get_by_id('%s_reverse' % substrate).bounds = (0, 0)
+        try:
+            tmp_model.reactions.get_by_id('%s_reverse' % substrate).bounds = (0, 0)
+        except:
+            print(substrate + ' not in the model')
+        else:
+            pass
+
         tmp_model.reactions.get_by_id(biomass_id).bounds = (biomass_min, biomass_min)
         tmp_model.objective = obj
         enz_model_pfba_solution = cobra.flux_analysis.pfba(tmp_model)
@@ -2391,7 +2411,13 @@ def get_enz_foldchange(ecModel_file, obj, substrate, substrate_con, biomass_id, 
 
     with enz_model as tmp_model:
         tmp_model.reactions.get_by_id(substrate).bounds = (-substrate_con, 0)
-        tmp_model.reactions.get_by_id('%s_reverse' % substrate).bounds = (0, 0)
+        try:
+            tmp_model.reactions.get_by_id('%s_reverse' % substrate).bounds = (0, 0)
+        except:
+            print(substrate + ' not in the model')
+        else:
+            pass
+
         tmp_model.reactions.get_by_id(biomass_id).bounds = (biomass_max, biomass_max)
         tmp_model.objective = obj
         enz_model_pfba_solution = cobra.flux_analysis.pfba(tmp_model)
@@ -2440,7 +2466,13 @@ def run_FSEOF(model, substrate, substrate_con, biomass_id, obj,FSEOF_file):
     '''
 
     model.reactions.get_by_id(substrate).bounds = (-substrate_con, 0)
-    model.reactions.get_by_id(f"{substrate}_reverse").bounds = (0, 0)
+    try:
+        model.reactions.get_by_id(f"{substrate}_reverse").bounds = (0, 0)
+    except:
+        print(substrate + ' not in the model')
+    else:
+        pass
+
     model.objective = biomass_id
     model_pfba_solution = cobra.flux_analysis.pfba(model)
     WTbiomass = model_pfba_solution.fluxes[biomass_id]
@@ -2454,7 +2486,13 @@ def run_FSEOF(model, substrate, substrate_con, biomass_id, obj,FSEOF_file):
         cond = float(cond)
         with model as tmp_model:
             tmp_model.reactions.get_by_id(substrate).bounds = (-substrate_con, 0)
-            tmp_model.reactions.get_by_id(f"{substrate}_reverse").bounds = (0, 0)
+            try:
+                tmp_model.reactions.get_by_id(f"{substrate}_reverse").bounds = (0, 0)
+            except:
+                print(substrate + ' not in the model')
+            else:
+                pass
+
             tmp_model.reactions.get_by_id(biomass_id).bounds = (cond, cond)
             tmp_model.objective = obj
             model_pfba_solution = cobra.flux_analysis.pfba(tmp_model)
