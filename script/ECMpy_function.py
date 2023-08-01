@@ -2607,7 +2607,7 @@ def Determine_suitable_ecGEM(model_file, bigg_met_file):
     model_met_list = [met.id for met in model.metabolites]
     model_met_in_bigg = [met.id for met in model.metabolites if met.id in bigg_met_df['bigg_id'].tolist()]
     met_coverage = len(model_met_in_bigg) / len(model_met_list)
-    if met_coverage < 0.5:
+    if met_coverage < 0.33:
         met_error = f"The coverage of metabolites is too low ({met_coverage*100:.1f}%), and it is not recommended to construct an enzyme-constrained model."
         error_list.append(met_error)
 
@@ -2615,7 +2615,7 @@ def Determine_suitable_ecGEM(model_file, bigg_met_file):
     model_gene_list = [gene.id for gene in model.genes]
     model_gene_in_uniprot = [gene.id for gene in model.genes if 'uniprot' in gene.annotation]
     gene_coverage = len(model_gene_in_uniprot) / len(model_gene_list)
-    if gene_coverage < 0.5:
+    if gene_coverage < 0.33:
         gene_error = f"The coverage of genes is too low ({gene_coverage*100:.1f}%), and it is not recommended to construct an enzyme-constrained model."
         error_list.append(gene_error)
 
@@ -2623,7 +2623,7 @@ def Determine_suitable_ecGEM(model_file, bigg_met_file):
     model_reaction_list = [reaction.id for reaction in model.reactions if not reaction.id.startswith('EX_')]
     model_reaction_with_EC = [reaction.id for reaction in model.reactions if 'ec-code' in reaction.annotation]
     reaction_coverage = len(model_reaction_with_EC) / len(model_reaction_list)
-    if reaction_coverage < 0.3:
+    if reaction_coverage < 0.33:
         reaction_error = f"The coverage of reactions is too low ({reaction_coverage*100:.1f}%), and it is not recommended to use DLKcat to obtain enzyme kinetic data."
         error_list.append(reaction_error)
 
