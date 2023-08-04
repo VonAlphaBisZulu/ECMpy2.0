@@ -8,8 +8,19 @@ $ conda create -n ECMpy2 python=3.7
 $ conda activate ECMpy2
 ```
 
-## install package 
+## Installation
+### Installation of ECMpy2.0 using pip
+```shell
+$ pip install ECMpy2.0
+```
 
+### Installation of ECMpy2.0 using github
+
+#### Download ECMpy2.0 is via git clone:
+```shell
+$ git clone  https://github.com/tibbdc/ECMpy2.0.git
+```
+#### install package 
 ```shell
 $ pip install cobra==0.21.0  
 $ pip install openpyxl  
@@ -33,6 +44,7 @@ $ pip install -U kaleido
 $ pip install nbformat
 $ python -m ipykernel install --user --name ECMpy2 --display-name "ECMpy2"  
 ```
+
 
 ## Preprocessing data sources 
 
