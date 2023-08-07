@@ -6166,7 +6166,7 @@
           </rdf:RDF>
         </sbml:annotation>
       </species>
-      <species boundaryCondition="false" compartment="c" constant="false" hasOnlySubstanceUnits="false" id="M_tre6p_c" metaid="M_tre6p_c" name=" " fbc:chemicalFormula="C12H22O14P">
+      <species boundaryCondition="false" compartment="c" constant="false" hasOnlySubstanceUnits="false" id="M_tre6p_c" metaid="M_tre6p_c" name="Alpha,alpha'-Trehalose 6-phosphate" fbc:chemicalFormula="C12H22O14P">
         <sbml:annotation>
           <rdf:RDF>
             <rdf:Description rdf:about="#M_tre6p_c">
@@ -18958,9 +18958,9 @@
           </rdf:RDF>
         </sbml:annotation>
       </species>
-      <species boundaryCondition="false" constant="false" hasOnlySubstanceUnits="false" id="M_cppp9_c" />
-      <species boundaryCondition="false" constant="false" hasOnlySubstanceUnits="false" id="M_fecpp3_c" />
-      <species boundaryCondition="false" constant="false" hasOnlySubstanceUnits="false" id="M_2h_c" />
+      <species boundaryCondition="false" compartment="c" constant="false" hasOnlySubstanceUnits="false" id="M_cppp9_c" metaid="M_cppp9_c" name="Coproporphyrinogen III" fbc:chemicalFormula="C36H38N4O8" />
+      <species boundaryCondition="false" compartment="c" constant="false" hasOnlySubstanceUnits="false" id="M_fecpp3_c" metaid="M_fecpp3_c" name="Fe-Coproporphyrin III" fbc:chemicalFormula="C36H36FeN4O8" />
+      <species boundaryCondition="false" compartment="c" constant="false" hasOnlySubstanceUnits="false" id="M_2h_c" metaid="M_2h_c" name="H+" fbc:chemicalFormula="H" />
     </listOfSpecies>
     <fbc:listOfGeneProducts>
       <fbc:geneProduct metaid="G_BSU40550" fbc:id="G_BSU40550" fbc:label="BSU40550" fbc:name="BSU40550">
