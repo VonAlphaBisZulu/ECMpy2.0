@@ -974,7 +974,10 @@ def adj_reaction_kcat_by_database(json_model_path,select_reactionlist, need_chan
                 for eachec in ec_number:
                     if eachec in Brenda_sabio_combined_select.keys():
                         kcat_max_list.append(Brenda_sabio_combined_select[eachec]['kcat_max'])
-                reaction_kcat_max = np.max(kcat_max_list)     
+                if len(kcat_max_list)>0:        
+                    reaction_kcat_max = np.max(kcat_max_list)  
+                else:
+                    reaction_kcat_max = 0  
                 if reaction_kcat_mw.loc[eachreaction, 'kcat'] < reaction_kcat_max:
                     reaction_kcat_mw.loc[eachreaction,'kcat'] = reaction_kcat_max
                     reaction_kcat_mw.loc[eachreaction, 'kcat_MW'] = reaction_kcat_max * 3600*1000/reaction_kcat_mw.loc[eachreaction, 'MW']
@@ -1024,12 +1027,11 @@ def adj_trans_model2enz_model(model_file, reaction_kcat_mw, f, ptot, sigma, lowe
             dictionary_model['reactions'][eachreaction]['kcat_MW'] = ''
     json_write(json_output_file, dictionary_model)
     
-def change_enz_model_by_enz_usage(enz_ratio,json_model_path, reaction_flux_file, EC_max_file, reaction_kcat_mw, need_change_reaction_list, changed_reaction_list,f, ptot, sigma, lowerbound, upperbound, json_output_file):
+def change_enz_model_by_enz_usage(json_model_path, reaction_flux_file, EC_max_file, reaction_kcat_mw, need_change_reaction_list, changed_reaction_list,f, ptot, sigma, lowerbound, upperbound, json_output_file):
     """Get new enzyme model using enzyme usage to calibration
 
     Arguments
     ----------
-    * enz_ratio: enzyme ratio which needed change.
     * json_model_path: The file storing json model.
     * reaction_flux_file: reaction-flux file.
     * reaction_kcat_mw_file: reaction kcat/mw file.
