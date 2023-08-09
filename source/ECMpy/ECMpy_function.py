@@ -13,7 +13,7 @@ import time
 import statistics
 from typing import Any, Dict, List
 from urllib.parse import urlencode
-from urllib.request import Request, urlopen
+#from urllib.request import Request, urlopen
 import cobra
 import numpy as np
 import pandas as pd
