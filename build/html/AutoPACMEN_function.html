@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoPACMEN_function &mdash; ecmpy 2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/my_custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ECMpy_function" href="ECMpy_function.html" />
+    <link rel="prev" title="Documentation for ecmpy" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AutoPACMEN_function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.create_combined_kcat_database"><code class="docutils literal notranslate"><span class="pre">create_combined_kcat_database()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.create_file"><code class="docutils literal notranslate"><span class="pre">create_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.ensure_folder_existence"><code class="docutils literal notranslate"><span class="pre">ensure_folder_existence()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.get_ec_number_kcats_wildcard_search"><code class="docutils literal notranslate"><span class="pre">get_ec_number_kcats_wildcard_search()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.get_entrez_id_from_organism_full_name"><code class="docutils literal notranslate"><span class="pre">get_entrez_id_from_organism_full_name()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.get_entrez_id_from_organism_full_name_batch"><code class="docutils literal notranslate"><span class="pre">get_entrez_id_from_organism_full_name_batch()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.get_files"><code class="docutils literal notranslate"><span class="pre">get_files()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.get_id_associated_kcats"><code class="docutils literal notranslate"><span class="pre">get_id_associated_kcats()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.get_protein_mass_mapping"><code class="docutils literal notranslate"><span class="pre">get_protein_mass_mapping()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.get_protein_mass_mapping_with_sbml"><code class="docutils literal notranslate"><span class="pre">get_protein_mass_mapping_with_sbml()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.get_reactions_kcat_mapping"><code class="docutils literal notranslate"><span class="pre">get_reactions_kcat_mapping()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.get_taxonomy_from_organism_ncbi_id"><code class="docutils literal notranslate"><span class="pre">get_taxonomy_from_organism_ncbi_id()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.get_taxonomy_from_organism_ncbi_id_batch"><code class="docutils literal notranslate"><span class="pre">get_taxonomy_from_organism_ncbi_id_batch()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.is_fitting_ec_numbers"><code class="docutils literal notranslate"><span class="pre">is_fitting_ec_numbers()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.json_load"><code class="docutils literal notranslate"><span class="pre">json_load()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.json_write"><code class="docutils literal notranslate"><span class="pre">json_write()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.most_taxonomic_similar"><code class="docutils literal notranslate"><span class="pre">most_taxonomic_similar()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.parse_bigg_metabolites_file"><code class="docutils literal notranslate"><span class="pre">parse_bigg_metabolites_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.parse_brenda_json_for_model"><code class="docutils literal notranslate"><span class="pre">parse_brenda_json_for_model()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.parse_brenda_textfile"><code class="docutils literal notranslate"><span class="pre">parse_brenda_textfile()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.parse_sabio_rk_for_eclist"><code class="docutils literal notranslate"><span class="pre">parse_sabio_rk_for_eclist()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.parse_sabio_rk_for_model"><code class="docutils literal notranslate"><span class="pre">parse_sabio_rk_for_model()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.parse_sabio_rk_for_model_with_sbml"><code class="docutils literal notranslate"><span class="pre">parse_sabio_rk_for_model_with_sbml()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.pickle_load"><code class="docutils literal notranslate"><span class="pre">pickle_load()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.pickle_write"><code class="docutils literal notranslate"><span class="pre">pickle_write()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.sabio_rk_query_get_csv_lines"><code class="docutils literal notranslate"><span class="pre">sabio_rk_query_get_csv_lines()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.sabio_rk_query_with_query_dicts"><code class="docutils literal notranslate"><span class="pre">sabio_rk_query_with_query_dicts()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.sabio_rk_query_with_string"><code class="docutils literal notranslate"><span class="pre">sabio_rk_query_with_string()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#AutoPACMEN_function.standardize_folder"><code class="docutils literal notranslate"><span class="pre">standardize_folder()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ECMpy_function.html">ECMpy_function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_ecGEM_onestop.html">get_ecGEM_onestop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction_for_input.html">prediction_for_input</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ecmpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">AutoPACMEN_function</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/AutoPACMEN_function.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-AutoPACMEN_function">
+<span id="autopacmen-function"></span><h1>AutoPACMEN_function<a class="headerlink" href="#module-AutoPACMEN_function" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.create_combined_kcat_database">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">create_combined_kcat_database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sabio_rk_kcat_database_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brenda_kcat_database_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.create_combined_kcat_database" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a combined JSON of the given SABIO-K and BRENDA kcat databases with non-wildcard entries only.</p>
+<section id="arguments">
+<h2>Arguments<a class="headerlink" href="#arguments" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>sabio_rk_kcat_database_path: str ~ The path to the SABIO-RK kcat database JSON</p></li>
+<li><p>brenda_kcat_database_path: str ~ The path to the BRENDA kcat database JSON</p></li>
+<li><p>output_path: str ~ The outputh path (with filename) of the genreated combined kcat database JSON</p></li>
+</ul>
+<p>Output:
+A JSON with the following format:
+&lt;pre&gt;
+{</p>
+<blockquote>
+<div><dl>
+<dt>‘$EC_NUMBER’: {</dt><dd><dl>
+<dt>‘$BIGG_IDS_OF_SUBSTRATES’: {</dt><dd><dl class="simple">
+<dt>‘$ORGANISM’: {</dt><dd><p>kcat: float</p>
+</dd>
+</dl>
+<p>},
+(…)</p>
+</dd>
+</dl>
+<p>},
+(…),
+‘SOURCE’: ‘SABIO_RK’ or ‘BRENDA’ or ‘BRENDA and SABIO-RK’,
+‘WILDCARD’: false</p>
+</dd>
+</dl>
+<p>},
+(…)</p>
+</div></blockquote>
+<p>}
+&lt;/pre&gt;</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.create_file">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">create_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">store_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AutoPACMEN_function.create_file" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.ensure_folder_existence">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">ensure_folder_existence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.ensure_folder_existence" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if the given folder exists. If not, the folder is created.</p>
+<section id="argument">
+<h2>Argument<a class="headerlink" href="#argument" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>folder: str ~ The folder whose existence shall be enforced.</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.get_ec_number_kcats_wildcard_search">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">get_ec_number_kcats_wildcard_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ec_numbers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bigg_id_name_mapping_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#AutoPACMEN_function.get_ec_number_kcats_wildcard_search" title="Permalink to this definition"></a></dt>
+<dd><p>Returns EC number-dependent kcats using an incremental wildcard level until kcarts were found for all ECs.</p>
+<section id="id1">
+<h2>Arguments<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p><a href="#id2"><span class="problematic" id="id3">*</span></a>ec_numbers: List[str] ~ The list of checked EC numbers.
+<a href="#id4"><span class="problematic" id="id5">*</span></a>bigg_id_name_mapping_path: str ~ The full path to a BIGG ID&lt;-&gt;Name mapping
+<a href="#id6"><span class="problematic" id="id7">*</span></a>batch_size: int = 5 ~ How many EC numbers shall be looked up in parallel in SABIO-RK. Do not set this too high!</p>
+</section>
+<section id="output">
+<h2>Output<a class="headerlink" href="#output" title="Permalink to this heading"></a></h2>
+<p>A dictionary with the following content:
+&lt;pre&gt;</p>
+<blockquote>
+<div><blockquote>
+<div><p>{
+“$EC_NUMBER_OR_KEGG_REACTION_ID”: {</p>
+<blockquote>
+<div><dl>
+<dt>“$SUBSTRATE_WITH_BIGG_ID_1”: {</dt><dd><dl class="simple">
+<dt>“$ORGANISM_1”: [</dt><dd><p>$kcat_1,
+(…)
+$kcat_n,</p>
+</dd>
+</dl>
+<p>]</p>
+</dd>
+</dl>
+<p>},
+(…),
+“REST”: {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>“$ORGANISM_1”: [</dt><dd><p>$kcat_1,
+(…)
+$kcat_n,</p>
+</dd>
+</dl>
+<p>]</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>}
+(…),</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>&lt;/pre&gt;
+‘REST’ stands for a substrate without found BIGG ID.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.get_entrez_id_from_organism_full_name">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">get_entrez_id_from_organism_full_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organism_full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AutoPACMEN_function.get_entrez_id_from_organism_full_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get organism’s Entrez numeric identifier.</p>
+<p>This numeric identifier is neccessary for BLAST and NCBI TAXONOMY
+searches.
+This function uses Biopython functions. Returns BLAST-compatible ID as
+txid + NCBI ID + [ORGN].</p>
+<p>Arguments:
+&gt;organism_kegg_id: str ~ The organism’s full name, e.g. “Xanthomonas</p>
+<blockquote>
+<div><p>campestris pv. campesris B100”</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.get_entrez_id_from_organism_full_name_batch">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">get_entrez_id_from_organism_full_name_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organism_full_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#AutoPACMEN_function.get_entrez_id_from_organism_full_name_batch" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the Entrez numeric ID of the given organisms.</p>
+<p>This numeric identifier is neccessary for BLAST and NCBI TAXONOMY
+searches.
+This function uses Biopython functions. Returns BLAST-compatible ID as
+txid + NCBI ID + [ORGN].</p>
+<p>Arguments:
+&gt;organism_full_names: List[str] ~ A list of full names of organisms, e.g. “Xanthomonas</p>
+<blockquote>
+<div><p>campestris pv. campesris B100”</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.get_files">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">get_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#AutoPACMEN_function.get_files" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the names of the files in the given folder as a list of strings.</p>
+<section id="id8">
+<h2>Arguments<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>path: str ~ The path to the folder of which the file names shall be returned</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.get_id_associated_kcats">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">get_id_associated_kcats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">searched_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bigg_id_name_mapping_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#AutoPACMEN_function.get_id_associated_kcats" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a dictionary with SABIO-RK kcat data for the given EC numbers or KEGG IDs.</p>
+<p>This function calls the SABIO-RK API.</p>
+<section id="input">
+<h2>Input<a class="headerlink" href="#input" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>searched_ids: List[str] ~ The list of searched IDs</p></li>
+<li><p>id_type: str ~ Must be either ‘EC’ or ‘KEGG’, depending on whether you are looking for kcats for EC numbers
+or KEGG IDs.</p></li>
+<li><p>batch_size: int = 5 ~ The SABIO-RK API search batching number (i.e., with satch_size=5 five IDs are searched at once)</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2>Output<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<p>A dictionary with the following content:
+&lt;pre&gt;
+{</p>
+<blockquote>
+<div><dl>
+<dt>“$EC_NUMBER_OR_KEGG_REACTION_ID”: {</dt><dd><dl>
+<dt>“$SUBSTRATE_WITH_BIGG_ID_1”: {</dt><dd><dl class="simple">
+<dt>“$ORGANISM_1”: [</dt><dd><p>$kcat_1,
+(…)
+$kcat_n,</p>
+</dd>
+</dl>
+<p>]</p>
+</dd>
+</dl>
+<p>},
+(…),
+“REST”: {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>“$ORGANISM_1”: [</dt><dd><p>$kcat_1,
+(…)
+$kcat_n,</p>
+</dd>
+</dl>
+<p>]</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p>}
+(…),</p>
+</div></blockquote>
+<p>}
+&lt;/pre&gt;
+‘REST’ stands for a substrate without found BIGG ID.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.get_protein_mass_mapping">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">get_protein_mass_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.get_protein_mass_mapping" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a JSON with a mapping of protein IDs as keys, and as values the protein mass in kDa.</p>
+<p>The protein masses are calculated using the amino acid sequence from UniProt (retrieved using
+UniProt’s REST API).</p>
+<section id="id10">
+<h2>Arguments<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>model: cobra.Model ~ The model in the cobrapy format</p></li>
+<li><p>project_folder: str ~ The folder in which the JSON shall be created</p></li>
+<li><p>project_name: str ~ The beginning of the JSON’s file name</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2>Output<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<p>A JSON file with the path project_folder+project_name+’_protein_id_mass_mapping.json’
+and the following structure:
+&lt;pre&gt;
+{</p>
+<blockquote>
+<div><p>“$PROTEIN_ID”: $PROTEIN_MASS_IN_KDA,
+(…),</p>
+</div></blockquote>
+<p>}
+&lt;/pre&gt;</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.get_protein_mass_mapping_with_sbml">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">get_protein_mass_mapping_with_sbml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sbml_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.get_protein_mass_mapping_with_sbml" title="Permalink to this definition"></a></dt>
+<dd><p>This module’s get_protein_mass_mapping() with SBML instead of a cobrapy module as argument.</p>
+<section id="id12">
+<h2>Arguments<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>sbml_path: str ~ The path to the model’s SBML</p></li>
+<li><p>project_folder: str ~ The folder in which the JSON shall be created</p></li>
+<li><p>project_name: str ~ The beginning of the JSON’s file name</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.get_reactions_kcat_mapping">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">get_reactions_kcat_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sbml_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organism</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kcat_database_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sa_database_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reaction_mw_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protein_kcat_database_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_kcat_selection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.get_reactions_kcat_mapping" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a reaction&lt;-&gt;kcat mapping for the given model :D</p>
+<p>The selection of kcats is depending on the affected metabolites of the reaction direction (one
+kcat is given for each the forward and reverse direction), and on the organism (the kcats
+from the taxonomically nearest organism is prefered).</p>
+<section id="id13">
+<h2>Arguments<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<p><a href="#id14"><span class="problematic" id="id15">*</span></a>sbml_path: str ~ Te SBML path to the model
+<a href="#id16"><span class="problematic" id="id17">*</span></a>project_folder: str ~ The folder in which the model data files are sored
+<a href="#id18"><span class="problematic" id="id19">*</span></a>project_name: str ~ The name of the used project
+<a href="#id20"><span class="problematic" id="id21">*</span></a>organism: str ~ The organism’s name
+<a href="#id22"><span class="problematic" id="id23">*</span></a>kcat_database_path: str ~ A path to an already created EC number&lt;-&gt;kcats database
+<a href="#id24"><span class="problematic" id="id25">*</span></a>sa_database_path: str ~ A path to an already created EC number&lt;-&gt;sas database#Mr.Mao
+<a href="#id26"><span class="problematic" id="id27">*</span></a>protein_kcat_database_path: str ~ A path to the custom protein&lt;-&gt;kcat database
+<a href="#id28"><span class="problematic" id="id29">*</span></a>type_of_kcat_selection: str ~ Can be “mean”, “median” or “random”. Refers to the selection of found kcats of a reaction.</p>
+<blockquote>
+<div><p>Is “mean” by default.</p>
+</div></blockquote>
+</section>
+<section id="id30">
+<h2>Output<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h2>
+<p>A JSON in the given project folder with the name $project_name+’_reactions_kcat_mapping_combined.json’ and
+the following structure:
+&lt;pre&gt;
+{</p>
+<blockquote>
+<div><dl class="simple">
+<dt>“$REACTION_NAME”: {</dt><dd><p>“forward”: $forward_kcat,
+“reverse”: $reverse_kcat</p>
+</dd>
+</dl>
+<p>},
+(…)</p>
+</div></blockquote>
+<p>}
+&lt;/pre&gt;</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.get_taxonomy_from_organism_ncbi_id">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">get_taxonomy_from_organism_ncbi_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organism_ncbi_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AutoPACMEN_function.get_taxonomy_from_organism_ncbi_id" title="Permalink to this definition"></a></dt>
+<dd><p>Get organism’s taxonomy from NCBI Taxonomy using Biopython functions.</p>
+<p>The taxonomy is returned as list, starting with the nearest and
+ending with the highest taxonomic level above the organism.</p>
+<p>Arguments:
+&gt;ncbi_organism_id: str ~ The organism’s NCBI ID, e.g. retrieved by</p>
+<blockquote>
+<div><p>this module’s “get_entrez_id_from_organism_full_name” function, in
+the format txid + NCBI ID + [ORGN]</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.get_taxonomy_from_organism_ncbi_id_batch">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">get_taxonomy_from_organism_ncbi_id_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organism_ncbi_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#AutoPACMEN_function.get_taxonomy_from_organism_ncbi_id_batch" title="Permalink to this definition"></a></dt>
+<dd><p>Get the taxonomy from NCBI Taxonomy of the given organisms using Biopython functions.</p>
+<p>The taxonomy is returned as Dictionary (Dict[str, List[str]) for each organism,
+where each value is a string list starting with the nearest and
+ending with the highest taxonomic level above the organism.</p>
+<p>Arguments:
+&gt;organism_ncbi_ids: List[str] ~ The list of the NCBI IDs of the organisms,</p>
+<blockquote>
+<div><p>e.g. retrieved by this module’s “get_entrez_id_from_organism_full_name”
+function, in the format txid + NCBI ID + [ORGN]</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.is_fitting_ec_numbers">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">is_fitting_ec_numbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ec_number_one</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ec_number_two</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wildcard_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#AutoPACMEN_function.is_fitting_ec_numbers" title="Permalink to this definition"></a></dt>
+<dd><p>Check whether the EC numbers are the same under the used wildcard level.</p>
+<section id="id31">
+<h2>Arguments<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>ec_number_one: str ~ The first given EC number.</p></li>
+<li><p>ec_number_two: str ~ The second given EC number.</p></li>
+<li><p>wildcard_level: int ~ The wildcard level.</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.json_load">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">json_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#AutoPACMEN_function.json_load" title="Permalink to this definition"></a></dt>
+<dd><p>Loads the given JSON file and returns it as dictionary.</p>
+<section id="id32">
+<h2>Arguments<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>path: str ~ The path of the JSON file</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.json_write">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">json_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.json_write" title="Permalink to this definition"></a></dt>
+<dd><p>Writes a JSON file at the given path with the given dictionary as content.</p>
+<section id="id33">
+<h2>Arguments<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>path: str ~  The path of the JSON file that shall be written</p></li>
+<li><p>dictionary: Dict[Any, Any] ~ The dictionary which shalll be the content of
+the created JSON file</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.most_taxonomic_similar">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">most_taxonomic_similar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_species</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxonomy_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#AutoPACMEN_function.most_taxonomic_similar" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a dictionary with a score of taxonomic distance from the given organism.</p>
+<p>e.g. if base_species is “Escherichia coli” and taxonomy_dict is
+&lt;pre&gt;
+{</p>
+<blockquote>
+<div><p>“Escherichia coli”: [“Escherichia”, “Bacteria”, “Organism”],
+“Pseudomonas”: [“Pseudomonas”, “Bacteria”, “Organism”],
+“Homo sapiens”: [“Homo”, “Mammalia”, “Animalia”, “Organism”],</p>
+</div></blockquote>
+<p>}
+&lt;/pre&gt;
+this function would return
+&lt;pre&gt;
+{</p>
+<blockquote>
+<div><p>“Escherichia coli”: 0,
+“Pseudomonas”: 1,
+“Homo sapiens”: 2,</p>
+</div></blockquote>
+<p>}
+&lt;/pre&gt;</p>
+<section id="id34">
+<h2>Arguments<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>base_species: str ~ The species to which a relation is made.</p></li>
+<li><p>taxonomy_dict: Dict[str, List[str]] ~ A dictionary with organism names as keys and
+their taxonomic levels (sorted from nearest to farthest) as string list.</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.parse_bigg_metabolites_file">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">parse_bigg_metabolites_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bigg_metabolites_file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_output_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.parse_bigg_metabolites_file" title="Permalink to this definition"></a></dt>
+<dd><p>Parses a BIGG metabolites text file and returns a dictionary for this file.</p>
+<p>As of 29/04/2019, a BIGG metabolites list of all BIGG-included metabolites
+is retrievable under <a class="reference external" href="http://bigg.ucsd.edu/data_access">http://bigg.ucsd.edu/data_access</a></p>
+<section id="id35">
+<h2>Arguments<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>bigg_metabolites_file_path: str ~ The file path to the BIGG metabolites file.
+The usual file name (which has to be included too in this argument) is
+bigg_models_metabolites.txt</p></li>
+<li><p>output_folder: str ~ The folder in which the JSON including the parsed BIGG
+metabolites file data is stored with the name ‘bigg_id_name_mapping.json’</p></li>
+</ul>
+</section>
+<section id="id36">
+<h2>Output<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>A JSON file with the name ‘bigg_id_name_mapping.json’ in the given output folder,
+with the following structure:</p></li>
+</ul>
+<dl>
+<dt>&lt;pre&gt;</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“$BIGG_ID”: “$CHEMICAL_OR_USUAL_NAME”,
+(…),
+“$BIGG_ID”: “$BIGG_ID”,
+(…),</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+<p>&lt;/pre&gt;
+The BIGG ID &lt;-&gt; BIGG ID mapping is done for models which already use the BIGG IDs.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.parse_brenda_json_for_model">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">parse_brenda_json_for_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sbml_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brenda_json_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_json_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.parse_brenda_json_for_model" title="Permalink to this definition"></a></dt>
+<dd><p>Reads out a BRENDA JSON file created with parse_brenda_textfile and creates a model-specific JSON.</p>
+<section id="id37">
+<h2>Arguments<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>sbml_path: str ~ The path of the SBML model of which a specific BRENDA JSON kcat database
+shall be created</p></li>
+<li><p>brenda_json_path: str ~ The full path to the BRENDA JSON created with parse_brenda_textfile.</p></li>
+<li><p>output_json_path: str ~ The full path to the newly created JSON.</p></li>
+</ul>
+</section>
+<section id="id38">
+<h2>Output<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h2>
+<p>A JSON in the given folder and the name ‘kcat_database_brenda.json’, and with the following structure:
+&lt;pre&gt;
+{</p>
+<blockquote>
+<div><dl>
+<dt>‘$EC_NUMBER’: {</dt><dd><dl>
+<dt>‘$BIGG_ID_METABOLITE’: {</dt><dd><dl class="simple">
+<dt>‘$ORGANISM’: [</dt><dd><p>kcat_list: float</p>
+</dd>
+</dl>
+<p>],
+(…)</p>
+</dd>
+</dl>
+<p>},
+(…)</p>
+</dd>
+</dl>
+<p>},
+(…)</p>
+</div></blockquote>
+<p>}
+&lt;/pre&gt;</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.parse_brenda_textfile">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">parse_brenda_textfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brenda_textfile_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bigg_metabolites_json_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_output_path2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.parse_brenda_textfile" title="Permalink to this definition"></a></dt>
+<dd><p>Goes through a BRENDA database textfile and converts it into a machine-readable JSON.</p>
+<p>The JSON includes kcats for found organisms and substrates.
+As of 29/04/2019, the BRENDA database can be downloaded as textfile under
+<a class="reference external" href="https://www.brenda-enzymes.org/download_brenda_without_registration.php">https://www.brenda-enzymes.org/download_brenda_without_registration.php</a></p>
+<p>The BRENDA database is not in a completely standardized format, so that this functions
+contains many convoluted checks and circumventions of non-standardized data.</p>
+<p>kcats from mutated enzymes are excluded.</p>
+<section id="id39">
+<h2>Arguments<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>brenda_textfile_path: str ~ The BRENDA database text file path</p></li>
+<li><p>bigg_metabolites_json_folder: str ~ The folder in which the BIGG metabolites
+database is stored (it has to have the name ‘bigg_id_name_mapping.json’).</p></li>
+<li><p>json_output_path: str ~ The path of the JSON that shall be created</p></li>
+</ul>
+</section>
+<section id="id40">
+<h2>Output<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>A JSON containing the BRENDA textfile kcat data in a machine-readable format:</p></li>
+</ul>
+<dl>
+<dt>&lt;pre&gt;</dt><dd><dl>
+<dt>{</dt><dd><dl>
+<dt>“$EC_NUMBER”: {</dt><dd><dl>
+<dt>“$SUBSTRATE_WITH_BIGG_ID_1”: {</dt><dd><dl class="simple">
+<dt>“$ORGANISM_1”: [</dt><dd><p>$kcat_1,
+(…)
+$kcat_n,</p>
+</dd>
+</dl>
+<p>]</p>
+</dd>
+</dl>
+<p>},
+(…),
+“REST”: {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>“$ORGANISM_1”: [</dt><dd><p>$kcat_1,
+(…)
+$kcat_n,</p>
+</dd>
+</dl>
+<p>]</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p>}
+(…),</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+<p>&lt;/pre&gt;
+‘REST’ stands for a substrate without found BIGG ID.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.parse_sabio_rk_for_eclist">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">parse_sabio_rk_for_eclist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ec_numbers_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bigg_id_name_mapping_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.parse_sabio_rk_for_eclist" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves kcats from SABIO-RK for the given model and stores it in a JSON for the given model in the given path.</p>
+<section id="algorithm">
+<h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this heading"></a></h2>
+<p>Using the SABIO-RK REST API (as of 2019/30/04, it is explained under
+<a class="reference external" href="http://sabiork.h-its.org/layouts/content/docuRESTfulWeb/RESTWebserviceIntro.gsp">http://sabiork.h-its.org/layouts/content/docuRESTfulWeb/RESTWebserviceIntro.gsp</a>),</p>
+</section>
+<section id="id41">
+<h2>Arguments<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>eclist: List[str] ~ eclist.</p></li>
+<li><p>json_output_path: str ~ The path of the JSON that shall be created</p></li>
+</ul>
+</section>
+<section id="id42">
+<h2>Output<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>A JSON in the given project folder with the following structure:</p></li>
+</ul>
+<dl>
+<dt>&lt;pre&gt;</dt><dd><dl>
+<dt>{</dt><dd><dl>
+<dt>“$EC_NUMBER_OR_KEGG_REACTION_ID”: {</dt><dd><dl>
+<dt>“$SUBSTRATE_WITH_BIGG_ID_1”: {</dt><dd><dl class="simple">
+<dt>“$ORGANISM_1”: [</dt><dd><p>$kcat_1,
+(…)
+$kcat_n,</p>
+</dd>
+</dl>
+<p>]</p>
+</dd>
+</dl>
+<p>},
+(…),
+“REST”: {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>“$ORGANISM_1”: [</dt><dd><p>$kcat_1,
+(…)
+$kcat_n,</p>
+</dd>
+</dl>
+<p>]</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p>}
+(…),</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+<p>&lt;/pre&gt;
+‘REST’ stands for a substrate without found BIGG ID.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.parse_sabio_rk_for_model">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">parse_sabio_rk_for_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bigg_id_name_mapping_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.parse_sabio_rk_for_model" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves kcats from SABIO-RK for the given model and stores it in a JSON for the given model in the given path.</p>
+<section id="id43">
+<h2>Algorithm<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h2>
+<p>Using the SABIO-RK REST API (as of 2019/30/04, it is explained under
+<a class="reference external" href="http://sabiork.h-its.org/layouts/content/docuRESTfulWeb/RESTWebserviceIntro.gsp">http://sabiork.h-its.org/layouts/content/docuRESTfulWeb/RESTWebserviceIntro.gsp</a>),</p>
+</section>
+<section id="id44">
+<h2>Arguments<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>model: cobra.Model ~ The model for which kcats shall be retrieved from SABIO-RK.</p></li>
+<li><p>json_output_path: str ~ The path of the JSON that shall be created</p></li>
+</ul>
+</section>
+<section id="id45">
+<h2>Output<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>A JSON in the given project folder with the following structure:</p></li>
+</ul>
+<dl>
+<dt>&lt;pre&gt;</dt><dd><dl>
+<dt>{</dt><dd><dl>
+<dt>“$EC_NUMBER_OR_KEGG_REACTION_ID”: {</dt><dd><dl>
+<dt>“$SUBSTRATE_WITH_BIGG_ID_1”: {</dt><dd><dl class="simple">
+<dt>“$ORGANISM_1”: [</dt><dd><p>$kcat_1,
+(…)
+$kcat_n,</p>
+</dd>
+</dl>
+<p>]</p>
+</dd>
+</dl>
+<p>},
+(…),
+“REST”: {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>“$ORGANISM_1”: [</dt><dd><p>$kcat_1,
+(…)
+$kcat_n,</p>
+</dd>
+</dl>
+<p>]</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p>}
+(…),</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+<p>&lt;/pre&gt;
+‘REST’ stands for a substrate without found BIGG ID.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.parse_sabio_rk_for_model_with_sbml">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">parse_sabio_rk_for_model_with_sbml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sbml_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bigg_id_name_mapping_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.parse_sabio_rk_for_model_with_sbml" title="Permalink to this definition"></a></dt>
+<dd><p>See this module’s parse_sabio_rk_for_model() documentation. This function uses an SBML path.</p>
+<section id="id46">
+<h2>Arguments<a class="headerlink" href="#id46" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>sbml_path: str ~ The model’s SBML path.</p></li>
+<li><p>json_output_path: str ~ The path of the JSON that shall be created</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.pickle_load">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">pickle_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#AutoPACMEN_function.pickle_load" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the value of the given pickle file.</p>
+<section id="id47">
+<h2>Arguments<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>path: str ~ The path to the pickle file.</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.pickle_write">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">pickle_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pickled_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AutoPACMEN_function.pickle_write" title="Permalink to this definition"></a></dt>
+<dd><p>Writes the given object as pickled file with the given path</p>
+<section id="id48">
+<h2>Arguments<a class="headerlink" href="#id48" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>path: str ~ The path of the pickled file that shall be created</p></li>
+<li><p>pickled_object: Any ~ The object which shall be saved in the pickle file</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.sabio_rk_query_get_csv_lines">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">sabio_rk_query_get_csv_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#AutoPACMEN_function.sabio_rk_query_get_csv_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the result of a SABIo-RK API call with the given query dicts as csvReader lines</p>
+<section id="id49">
+<h2>Input<a class="headerlink" href="#id49" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>query_dicts: List[Any] ~ A list of query dicts in the form of {id_name: ec_number, “Parametertype”: “kcat”, “EnzymeType”: “wildtype”}</p></li>
+</ul>
+</section>
+<section id="id50">
+<h2>Output<a class="headerlink" href="#id50" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>The sabio_rk_query_with_string() result in a different form:
+Either “NO_RESULT” (a str) if no search esult was found,
+or a list of strings which includes the lines of the CSV that
+is returned by SABIO-RK</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.sabio_rk_query_with_query_dicts">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">sabio_rk_query_with_query_dicts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#AutoPACMEN_function.sabio_rk_query_with_query_dicts" title="Permalink to this definition"></a></dt>
+<dd><p>Performs a SABIO-RK query with given query dicts and converts them into a string</p>
+<section id="id51">
+<h2>Input<a class="headerlink" href="#id51" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>query_dicts: List[Any] ~ A list of query dicts in the form of {id_name: ec_number, “Parametertype”: “kcat”, “EnzymeType”: “wildtype”}</p></li>
+</ul>
+</section>
+<section id="id52">
+<h2>Output<a class="headerlink" href="#id52" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>As in sabio_rk_query_with_string()</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.sabio_rk_query_with_string">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">sabio_rk_query_with_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#AutoPACMEN_function.sabio_rk_query_with_string" title="Permalink to this definition"></a></dt>
+<dd><p>Call SABIO-RK API with the given query string.</p>
+<p>The query string is the actual term that is searched</p>
+<section id="id53">
+<h2>Arguments<a class="headerlink" href="#id53" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>query_string: str ~ The query string</p></li>
+</ul>
+</section>
+<section id="id54">
+<h2>Output<a class="headerlink" href="#id54" title="Permalink to this heading"></a></h2>
+<p>SABIO-RK’s request result as str:</p>
+<p>If results could be found, it is a csv-like structure that can
+be futher processed e.g. with the Python standard library function csv.DictReader.
+The returned result fields are the EC number, the KEGG reaction ID, the organism
+and the ‘parameter’, i.e. the category of the given result. A possible category
+is ‘kcat’.
+If no results could be found, it is the str “NO_RESULT”.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AutoPACMEN_function.standardize_folder">
+<span class="sig-prename descclassname"><span class="pre">AutoPACMEN_function.</span></span><span class="sig-name descname"><span class="pre">standardize_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#AutoPACMEN_function.standardize_folder" title="Permalink to this definition"></a></dt>
+<dd><p>Returns for the given folder path is returned in a more standardized way.</p>
+<p>I.e., folder paths with potential are replaced with /. In addition, if
+a path does not end with / will get an added /.</p>
+<section id="id55">
+<h2>Argument<a class="headerlink" href="#id55" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>folder: str ~ The folder path that shall be standardized.</p></li>
+</ul>
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Documentation for ecmpy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ECMpy_function.html" class="btn btn-neutral float-right" title="ECMpy_function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Biodesign Center.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
