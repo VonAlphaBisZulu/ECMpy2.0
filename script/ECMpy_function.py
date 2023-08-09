@@ -959,29 +959,30 @@ def adj_reaction_kcat_by_database(json_model_path,select_reactionlist, need_chan
     json_model=cobra.io.load_json_model(json_model_path)
     for eachreaction in select_reactionlist:
         need_change_reaction_list.append(eachreaction)
-        select_reaction = json_model.reactions.get_by_id(eachreaction)
-        if "ec-code" in select_reaction.annotation.keys():
-            ec_number = select_reaction.annotation["ec-code"]
-            kcat_max_list = []
-            if isinstance(ec_number, str):
-                if ec_number in Brenda_sabio_combined_select.keys():
-                    reaction_kcat_max = Brenda_sabio_combined_select[ec_number]['kcat_max']
-                    if reaction_kcat_mw.loc[eachreaction, 'kcat'] < reaction_kcat_max:
-                        reaction_kcat_mw.loc[eachreaction,'kcat'] = reaction_kcat_max#h_1
-                        reaction_kcat_mw.loc[eachreaction, 'kcat_MW'] = reaction_kcat_max * 3600*1000/reaction_kcat_mw.loc[eachreaction, 'MW']
-                        changed_reaction_list.append(eachreaction) 
-            else:
-                for eachec in ec_number:
-                    if eachec in Brenda_sabio_combined_select.keys():
-                        kcat_max_list.append(Brenda_sabio_combined_select[eachec]['kcat_max'])
-                if len(kcat_max_list)>0:        
-                    reaction_kcat_max = np.max(kcat_max_list)  
+        if eachreaction in list(reaction_kcat_mw.index):
+            select_reaction = json_model.reactions.get_by_id(eachreaction)
+            if "ec-code" in select_reaction.annotation.keys():
+                ec_number = select_reaction.annotation["ec-code"]
+                kcat_max_list = []
+                if isinstance(ec_number, str):
+                    if ec_number in Brenda_sabio_combined_select.keys():
+                        reaction_kcat_max = Brenda_sabio_combined_select[ec_number]['kcat_max']
+                        if reaction_kcat_mw.loc[eachreaction, 'kcat'] < reaction_kcat_max:
+                            reaction_kcat_mw.loc[eachreaction,'kcat'] = reaction_kcat_max#h_1
+                            reaction_kcat_mw.loc[eachreaction, 'kcat_MW'] = reaction_kcat_max * 3600*1000/reaction_kcat_mw.loc[eachreaction, 'MW']
+                            changed_reaction_list.append(eachreaction) 
                 else:
-                    reaction_kcat_max = 0  
-                if reaction_kcat_mw.loc[eachreaction, 'kcat'] < reaction_kcat_max:
-                    reaction_kcat_mw.loc[eachreaction,'kcat'] = reaction_kcat_max
-                    reaction_kcat_mw.loc[eachreaction, 'kcat_MW'] = reaction_kcat_max * 3600*1000/reaction_kcat_mw.loc[eachreaction, 'MW']
-                    changed_reaction_list.append(eachreaction)    
+                    for eachec in ec_number:
+                        if eachec in Brenda_sabio_combined_select.keys():
+                            kcat_max_list.append(Brenda_sabio_combined_select[eachec]['kcat_max'])
+                    if len(kcat_max_list)>0:        
+                        reaction_kcat_max = np.max(kcat_max_list)  
+                    else:
+                        reaction_kcat_max = 0  
+                    if reaction_kcat_mw.loc[eachreaction, 'kcat'] < reaction_kcat_max:
+                        reaction_kcat_mw.loc[eachreaction,'kcat'] = reaction_kcat_max
+                        reaction_kcat_mw.loc[eachreaction, 'kcat_MW'] = reaction_kcat_max * 3600*1000/reaction_kcat_mw.loc[eachreaction, 'MW']
+                        changed_reaction_list.append(eachreaction)    
                 
     return(need_change_reaction_list,changed_reaction_list,reaction_kcat_mw)
 
