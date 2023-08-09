@@ -17,7 +17,7 @@ release = '2.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
-
+exclude_patterns = ['ECMpy/ECMpy_function.py/NotRequired']
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
