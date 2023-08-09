@@ -1137,7 +1137,7 @@ def convert_bigg_met_to_inchikey(metlist, inchikey_list_file):
         time.sleep(2.0)
         try:
             url = f'http://bigg.ucsd.edu/api/v2/universal/metabolites/{met}'
-            #response = requests.get(url, headers={"Accept": "application/json"})
+
             jsonData = json.loads(response.text)
             inchikeylist.append(jsonData['database_links']['InChI Key'][0]['id'])
         except:
