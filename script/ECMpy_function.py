@@ -1055,7 +1055,7 @@ def change_enz_model_by_enz_usage(json_model_path, reaction_flux_file, EC_max_fi
 
     i=0
     select_reaction = reaction_fluxes.index[0]
-    while (select_reaction in need_change_reaction_list):
+    while ((select_reaction in need_change_reaction_list) and (i<len(list(reaction_fluxes.index)))):
         i=i+1
         #print(i)
         select_reaction = reaction_fluxes.index[i+1]
@@ -2438,8 +2438,8 @@ def get_enz_foldchange(ecModel_file, obj, substrate, substrate_con, biomass_id, 
     enzcost_diff.loc[valid_values, 'log2_foldchange(max/min)'] = np.log2(enzcost_max.loc[valid_values, 'E'] / enzcost_min.loc[valid_values, 'E'])
     enzcost_diff.loc[valid_values, 'log2_foldchange(min/max)'] = np.log2(enzcost_min.loc[valid_values, 'E'] / enzcost_max.loc[valid_values, 'E'])
 
-    enhance_target = enzcost_diff['log2_foldchange(max/min)'] > 1.5
-    weaken_target = enzcost_diff['log2_foldchange(min/max)'] > 1.5
+    weaken_target = enzcost_diff['log2_foldchange(max/min)'] > FC_threshold
+    enhance_target = enzcost_diff['log2_foldchange(min/max)'] > FC_threshold
     enzcost_diff['type'] = np.select([enhance_target, weaken_target], ['enhance_target', 'weaken_target'], 'normal')
 
     enzcost_diff['foldchange(max/min)'] = enzcost_max['E'] / enzcost_min['E']
@@ -2580,7 +2580,7 @@ def run_FSEOF(model, substrate, substrate_con, biomass_id, obj,FSEOF_file):
     #FESEOF_gene_uni = FESEOF_gene_uni.reset_index(drop=True)
     #print(FESEOF_gene_uni.shape)
     FESEOF_gene.to_csv(FSEOF_file, sep='\t', index=False)
-    return FSEOFdf_f, FESEOF_gene
+    return FSEOFdf_f, FSEOFdf_done, FESEOF_gene
 
 def Determine_suitable_ecGEM(model_file, bigg_met_file):
     '''
