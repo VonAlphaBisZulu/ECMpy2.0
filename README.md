@@ -55,7 +55,7 @@ The "uniprot_data_accession_key.json" is compiled from the UniProt database (onl
 The "AutoPACMEN_function.py" file is downloaded and modified from the AutoPACMEN method (https://github.com/klamt-lab/autopacmen.git).  
 
 ## Documentation
-Full documentation is available at http://ecmpy.readthedocs.io.
+Full documentation is available at https://guanjr-ecmpy.readthedocs-hosted.com/en/latest.
 
 ## Acknowledgement
 Here we are deeply grateful to klamt-lab for releasing the code for AutoPACMEN (https://github.com/klamt-lab/autopacmen) and to SysBioChalmers for sharing the code for DLKcat (https://github.com/SysBioChalmers/DLKcat), which enables ECMpy2.0 to rapidly obtain enzyme kinetics parameter information for the corresponding models. We extend our heartfelt thanks to qLSLab for making the code for GPRuler available (https://github.com/qLSLab/GPRuler), as it has inspired ideas for ECMpy2.0 to automatically acquire the subunit composition of proteins.
