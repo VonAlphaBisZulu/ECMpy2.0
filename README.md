@@ -57,5 +57,23 @@ The "AutoPACMEN_function.py" file is downloaded and modified from the AutoPACMEN
 ## Documentation
 Full documentation is available at https://ecmpy.readthedocs.io/en/latest/.
 
+### Detailed process for constructing enzyme-constrained Models.
++ 00.Model_preview.ipynb
+    + Assessment of gene coverage (UniProt ID coverage), reaction coverage (EC number coverage excluding exchange reactions), and metabolite coverage (BiGG ID coverage).
++ 01.get_reactiion_kcat_using_DLKcat.ipynb
+    + Using DLKcat for predicting enzyme kinetic parameters directly based on the sequence information of enzymes catalyzing reactions and substrate information 
++ 01.get_reaction_kcat_using_AutoPACMEN.ipynb
+    + Employing the AutoPACMEN process for extracting enzyme kinetic parameter information from the BRENDA and SABIO-RK databases.
++ 02.get_ecModel_using_ECMpy.ipynb
+    + Using the ECMpy process to construct ecGEM, 
++ 03.ecModel_calibration.ipynb
+    + An automated parameter calibration process for the ecModel, guided by the principle of enzyme utilization。
++ 04.ecModel_analysis.ipynb
+    + Some analysis cases of ecModels.
++ 05.ecModel_ME.ipynbP
+    + Predicting metabolic engineering targets using ecModels. 
++ 06.One-click_modeling.ipynb
+    + Constructing ecGEMs with a one-click approach through the command line. 
+
 ## Acknowledgement
 Here we are deeply grateful to klamt-lab for releasing the code for AutoPACMEN (https://github.com/klamt-lab/autopacmen) and to SysBioChalmers for sharing the code for DLKcat (https://github.com/SysBioChalmers/DLKcat), which enables ECMpy2.0 to rapidly obtain enzyme kinetics parameter information for the corresponding models. We extend our heartfelt thanks to qLSLab for making the code for GPRuler available (https://github.com/qLSLab/GPRuler), as it has inspired ideas for ECMpy2.0 to automatically acquire the subunit composition of proteins.
