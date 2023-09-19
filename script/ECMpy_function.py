@@ -2526,61 +2526,20 @@ def run_FSEOF(model, substrate, substrate_con, biomass_id, obj,FSEOF_file):
     always_up['regulation'] = 'up'
 
     FSEOFdf_done = pd.concat([always_up, unchanged, always_down])
+    FSEOFdf_done.loc[FSEOFdf_done['FC_mean'] == 0, 'regulation'] = 'knockout'
 
-    FSEOFdf_done['GPR1'] = FSEOFdf_done['GPR'].str.replace(' and ', ' or ')
+    reaction_ids = FSEOFdf_done.index.tolist()
+    unique_reaction_ids = list(set(reaction_ids))
 
-    FSEOFdf_gene = FSEOFdf_done['GPR1'].str.split(' or ', expand=True).stack()
-    FSEOFdf_gene = FSEOFdf_gene.reset_index(level=1, drop=True).rename('genes')
+    reactions_equ = {}
+    for r_id in unique_reaction_ids:
+        reactions_equ[r_id] = model.reactions.get_by_id(r_id).reaction
 
-    FSEOFdf_g = FSEOFdf_done.drop('GPR1', axis=1).join(FSEOFdf_gene)
-    cols = list(FSEOFdf_g.columns.values)
-    cols.pop(cols.index('genes'))
-    FSEOFdf_g = FSEOFdf_g[cols[0:3] + ['genes'] + cols[3:]]
-    FSEOFdf_g['genes'] = FSEOFdf_g['genes'].str.replace('(', '').str.replace(')', '').str.replace(' ', '')
+    FSEOFdf_done['reactions'] = FSEOFdf_done.index.map(reactions_equ)   
 
-    FSEOFdf_filter = FSEOFdf_g.set_index('genes')
+    FSEOFdf_done.to_csv(FSEOF_file)
 
-    for eachg in FSEOFdf_filter.index:
-        FSEOFdf_filter.loc[eachg, 'check'] = 'no'
-        if 'yes' not in FSEOFdf_filter.loc[eachg, 'check']:
-            df_temp_re = FSEOFdf_filter.loc[eachg, 'regulation']
-            if isinstance(df_temp_re, str):
-                FSEOFdf_filter.loc[eachg, 'regulation'] = df_temp_re
-                FSEOFdf_filter.loc[eachg, 'check'] = 'yes'
-            else:
-                if list(df_temp_re).count(df_temp_re[0]) != len(list(df_temp_re)):
-                    FSEOFdf_filter.loc[eachg, 'regulation'] = 'drop'
-                    FSEOFdf_filter.loc[eachg, 'check'] = 'yes'
-                else:
-                    FSEOFdf_filter.loc[eachg, 'regulation'] = df_temp_re[0]
-                    FSEOFdf_filter.loc[eachg, 'check'] = 'yes'
-
-    FSEOFdf_f = FSEOFdf_filter.reset_index()
-    FSEOFdf_f.loc[FSEOFdf_f['FC_mean'] == 0, 'regulation'] = 'knockout'
-    FSEOFdf_f = FSEOFdf_f[FSEOFdf_f['regulation'] != 'drop']
-    FSEOFdf_f = FSEOFdf_f.sort_values(by=['FC_mean'],ascending=False)
-
-    gene_ids = FSEOFdf_f['genes'].tolist()
-    unique_gene_ids = list(set(gene_ids))
-
-    gene_reactions = {}
-    for gene_id in unique_gene_ids:
-        gene = model.genes.get_by_id(gene_id)
-        reactions = []
-        if gene:
-            for reaction in gene.reactions:
-                reactions.append(reaction.id)
-        gene_reactions[gene_id] = reactions
-
-    FSEOFdf_f['reactions'] = FSEOFdf_f['genes'].map(gene_reactions)   
-
-    FESEOF_gene = pd.concat([FSEOFdf_f['genes'], FSEOFdf_f['regulation'], FSEOFdf_f['reactions'], FSEOFdf_f['check']], axis=1)
-    #print(FESEOF_gene.shape)
-    #FESEOF_gene_uni = FESEOF_gene.drop_duplicates()
-    #FESEOF_gene_uni = FESEOF_gene_uni.reset_index(drop=True)
-    #print(FESEOF_gene_uni.shape)
-    FESEOF_gene.to_csv(FSEOF_file, sep='\t', index=False)
-    return FSEOFdf_f, FSEOFdf_done, FESEOF_gene
+    return FSEOFdf_done
 
 def Determine_suitable_ecGEM(model_file, bigg_met_file):
     '''
